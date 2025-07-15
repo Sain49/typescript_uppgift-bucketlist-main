@@ -32,10 +32,4 @@ export const dreams: Dream[] = [
     theme: "vardagsdrömmar",
     checked: false,
   },
-  {
-    id: 4,
-    name: "En dröm som tar flera rader lorem ipsum",
-    theme: "Out of the blue",
-    checked: true,
-  },
 ];
