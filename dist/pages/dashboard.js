@@ -27,7 +27,6 @@ function renderDreams() {
             const dreamIndex = dreams.findIndex((dr) => dr.id === d.id);
             if (dreamIndex > -1) {
                 dreams.splice(dreamIndex, 1);
-                console.log(dreams);
                 updateDataToLS("dreams", dreams);
                 renderDreams();
             }

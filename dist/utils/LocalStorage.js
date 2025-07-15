@@ -1,11 +1,8 @@
 export function retrieveDataFromLS(key) {
     const storedData = localStorage.getItem(key);
-    return storedData ? JSON.parse(storedData) : {};
+    return storedData ? JSON.parse(storedData) : [];
 }
 export function updateDataToLS(key, newData) {
-    const existingData = localStorage.getItem(key);
-    const data = existingData ? JSON.parse(existingData) : {};
-    data.push(newData);
-    localStorage.setItem(key, JSON.stringify(data));
+    localStorage.setItem(key, JSON.stringify(newData));
 }
 //# sourceMappingURL=LocalStorage.js.map

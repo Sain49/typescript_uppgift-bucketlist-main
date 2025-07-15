@@ -1,16 +1,11 @@
 import { Dream } from "../models/IDream.js";
 
-export function retrieveDataFromLS<T>(key: string) {
+export function retrieveDataFromLS<T>(key: string): T[] {
   const storedData = localStorage.getItem(key);
 
-  return storedData ? JSON.parse(storedData) : ({} as T);
+  return storedData ? JSON.parse(storedData) : [];
 }
 
 export function updateDataToLS<T>(key: string, newData: T): void {
-  const existingData = localStorage.getItem(key);
-  const data = existingData ? JSON.parse(existingData) : ({} as T);
-
-  data.push(newData);
-
-  localStorage.setItem(key, JSON.stringify(data));
+  localStorage.setItem(key, JSON.stringify(newData));
 }

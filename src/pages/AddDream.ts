@@ -59,15 +59,14 @@ addDreamForm.addEventListener("submit", (e) => {
       checked: false,
     };
 
-    updateDataToLS<Dream>("dreams", newDream);
+    dreams.push(newDream);
+    updateDataToLS<Dream[]>("dreams", dreams);
 
     addDreamForm.reset();
     alert("Dröm tillagd!");
     window.location.href = "dashboard.html";
   }
 });
-
-console.log(dreams);
 
 userName.textContent = name;
 

@@ -43,13 +43,13 @@ addDreamForm.addEventListener("submit", (e) => {
             theme: dreamTheme,
             checked: false,
         };
-        updateDataToLS("dreams", newDream);
+        dreams.push(newDream);
+        updateDataToLS("dreams", dreams);
         addDreamForm.reset();
         alert("Dröm tillagd!");
         window.location.href = "dashboard.html";
     }
 });
-console.log(dreams);
 userName.textContent = name;
 populateThemes();
 //# sourceMappingURL=AddDream.js.map

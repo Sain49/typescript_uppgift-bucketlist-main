@@ -37,8 +37,8 @@ function renderDreams() {
       );
       if (dreamIndex > -1) {
         dreams.splice(dreamIndex, 1);
-        console.log(dreams);
-        updateDataToLS<Dream>("dreams", dreams);
+
+        updateDataToLS<Dream[]>("dreams", dreams);
 
         renderDreams();
       }
