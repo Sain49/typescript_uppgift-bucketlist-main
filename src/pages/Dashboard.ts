@@ -1,11 +1,17 @@
-import { dreams, name } from "../services/UserData.js";
+import { Dream } from "../models/IDream.js";
+import { name } from "../services/UserData.js";
+import { retrieveDataFromLS, updateDataToLS } from "../utils/LocalStorage.js";
+
+const dreams = retrieveDataFromLS<Dream>("dreams");
 
 const username = document.getElementById("user-name") as HTMLSpanElement;
 const dreamList = document.querySelector(".dream-list") as HTMLUListElement;
 
+console.log(dreams);
+
 function renderDreams() {
   dreamList.innerHTML = "";
-  dreams.forEach((d) => {
+  dreams.forEach((d: Dream) => {
     const dreamItem = document.createElement("li");
     dreamItem.classList.add("dream-list_item");
 
@@ -26,9 +32,14 @@ function renderDreams() {
     deleteBtn.type = "button";
     deleteBtn.innerHTML = `<img src="../assets/images/trash_delete.png">`;
     deleteBtn.addEventListener("click", () => {
-      const dreamIndex = dreams.findIndex((dr) => dr.id === d.id);
+      const dreamIndex = dreams.findIndex(
+        (dr: { id: number }) => dr.id === d.id
+      );
       if (dreamIndex > -1) {
         dreams.splice(dreamIndex, 1);
+        console.log(dreams);
+        updateDataToLS<Dream>("dreams", dreams);
+
         renderDreams();
       }
     });

@@ -6,7 +6,9 @@ export const themes = [
     "resdrömmar",
 ];
 const userLoginString = localStorage.getItem("userLogin");
-const userLogin = userLoginString ? JSON.parse(userLoginString) : null;
+const userLogin = userLoginString
+    ? JSON.parse(userLoginString)
+    : null;
 export let name = userLogin ? userLogin.name : "NAMN";
 export const dreams = [
     {
@@ -26,12 +28,6 @@ export const dreams = [
         name: "En dröm som tar flera rader lorem ipsum",
         theme: "vardagsdrömmar",
         checked: false,
-    },
-    {
-        id: 4,
-        name: "En dröm som tar flera rader lorem ipsum",
-        theme: "Out of the blue",
-        checked: true,
     },
 ];
 //# sourceMappingURL=UserData.js.map

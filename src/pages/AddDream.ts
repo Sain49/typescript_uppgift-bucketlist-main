@@ -1,5 +1,8 @@
-import { dreams, themes, name } from "../services/UserData.js";
+import { themes, name } from "../services/UserData.js";
 import { Dream } from "../models/IDream.js";
+import { updateDataToLS, retrieveDataFromLS } from "../utils/LocalStorage.js";
+
+const dreams = retrieveDataFromLS<Dream>("dreams");
 
 const addDreamForm = document.querySelector("form") as HTMLFormElement;
 const dreamInput = document.getElementById("dream") as HTMLInputElement;
@@ -47,19 +50,24 @@ addDreamForm.addEventListener("submit", (e) => {
   } else themeErrMsg.style.display = "none";
 
   if (valid) {
+    const dreamsLength = dreams.length;
+
     const newDream: Dream = {
-      id: Date.now(),
+      id: dreamsLength,
       name: dreamName,
       theme: dreamTheme,
       checked: false,
     };
 
-    dreams.push(newDream);
+    updateDataToLS<Dream>("dreams", newDream);
+
     addDreamForm.reset();
     alert("Dröm tillagd!");
     window.location.href = "dashboard.html";
   }
 });
+
+console.log(dreams);
 
 userName.textContent = name;
 

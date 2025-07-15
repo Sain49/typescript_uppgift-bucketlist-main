@@ -10,7 +10,9 @@ export const themes = [
 ];
 
 const userLoginString = localStorage.getItem("userLogin");
-const userLogin = userLoginString ? JSON.parse(userLoginString) : null;
+const userLogin: UserLogin = userLoginString
+  ? JSON.parse(userLoginString)
+  : null;
 export let name = userLogin ? userLogin.name : "NAMN";
 
 export const dreams: Dream[] = [

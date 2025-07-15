@@ -1,6 +1,9 @@
-import { dreams, name } from "../services/UserData.js";
+import { name } from "../services/UserData.js";
+import { retrieveDataFromLS, updateDataToLS } from "../utils/LocalStorage.js";
+const dreams = retrieveDataFromLS("dreams");
 const username = document.getElementById("user-name");
 const dreamList = document.querySelector(".dream-list");
+console.log(dreams);
 function renderDreams() {
     dreamList.innerHTML = "";
     dreams.forEach((d) => {
@@ -24,6 +27,8 @@ function renderDreams() {
             const dreamIndex = dreams.findIndex((dr) => dr.id === d.id);
             if (dreamIndex > -1) {
                 dreams.splice(dreamIndex, 1);
+                console.log(dreams);
+                updateDataToLS("dreams", dreams);
                 renderDreams();
             }
         });

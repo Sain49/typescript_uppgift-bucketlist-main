@@ -1,4 +1,5 @@
 import { UserLogin } from "../models/ILogin";
+import { dreams } from "../services/UserData.js";
 
 const userLogin: UserLogin = { name: "", password: "" };
 
@@ -45,6 +46,9 @@ function handleLoginOnSubmit(event: Event) {
   if (isValidInput()) {
     // store name and password to local storage
     storeLoginDataToLS();
+
+    storeDreamsToLS();
+
     window.location.href = "dashboard.html";
   }
 }
@@ -58,4 +62,8 @@ togglePswBtn.addEventListener("click", () => {
 
 function storeLoginDataToLS() {
   localStorage.setItem("userLogin", JSON.stringify(userLogin));
+}
+
+function storeDreamsToLS() {
+  localStorage.setItem("dreams", JSON.stringify(dreams));
 }

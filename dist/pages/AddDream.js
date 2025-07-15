@@ -1,4 +1,6 @@
-import { dreams, themes, name } from "../services/UserData.js";
+import { themes, name } from "../services/UserData.js";
+import { updateDataToLS, retrieveDataFromLS } from "../utils/LocalStorage.js";
+const dreams = retrieveDataFromLS("dreams");
 const addDreamForm = document.querySelector("form");
 const dreamInput = document.getElementById("dream");
 const dreamSelect = document.getElementById("dream-select");
@@ -34,18 +36,20 @@ addDreamForm.addEventListener("submit", (e) => {
     else
         themeErrMsg.style.display = "none";
     if (valid) {
+        const dreamsLength = dreams.length;
         const newDream = {
-            id: Date.now(),
+            id: dreamsLength,
             name: dreamName,
             theme: dreamTheme,
             checked: false,
         };
-        dreams.push(newDream);
+        updateDataToLS("dreams", newDream);
         addDreamForm.reset();
         alert("Dröm tillagd!");
         window.location.href = "dashboard.html";
     }
 });
+console.log(dreams);
 userName.textContent = name;
 populateThemes();
 //# sourceMappingURL=AddDream.js.map
