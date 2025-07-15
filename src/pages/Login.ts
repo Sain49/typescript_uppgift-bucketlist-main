@@ -36,3 +36,8 @@ form.addEventListener("submit", (e) => {
     window.location.href = "dashboard.html";
   }
 });
+
+togglePswBtn.addEventListener("click", () => {
+  if (pswInput.type === "password") pswInput.type = "text";
+  else pswInput.type = "password";
+});
