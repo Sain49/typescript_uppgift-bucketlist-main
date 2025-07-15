@@ -1,10 +1,10 @@
-const form = document.querySelector("form");
+const loginForm = document.querySelector("form");
 const usernameInput = document.getElementById("username");
-const pswInput = document.getElementById("passowrd");
+const pswInput = document.getElementById("password");
 const togglePswBtn = document.querySelector(".toggle-password");
 const usernameErrorMsg = document.getElementById("username-error-message");
 const pswErrorMsg = document.getElementById("password-error-message");
-form.addEventListener("submit", (e) => {
+function isValidInput() {
     const username = usernameInput.value.trim();
     const psw = pswInput.value.trim();
     let valid = true;
@@ -22,11 +22,15 @@ form.addEventListener("submit", (e) => {
     }
     else
         pswErrorMsg.style.display = "none";
-    if (valid) {
-        window.name = username;
+    return valid;
+}
+function handleLoginOnSubmit(event) {
+    event.preventDefault();
+    if (isValidInput()) {
         window.location.href = "dashboard.html";
     }
-});
+}
+loginForm.addEventListener("submit", handleLoginOnSubmit);
 togglePswBtn.addEventListener("click", () => {
     if (pswInput.type === "password")
         pswInput.type = "text";

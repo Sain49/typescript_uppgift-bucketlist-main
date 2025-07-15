@@ -1,8 +1,8 @@
 import { name } from "../services/variables";
 
-const form = document.querySelector("form") as HTMLFormElement;
+const loginForm = document.querySelector("form") as HTMLFormElement;
 const usernameInput = document.getElementById("username") as HTMLInputElement;
-const pswInput = document.getElementById("passowrd") as HTMLInputElement;
+const pswInput = document.getElementById("password") as HTMLInputElement;
 const togglePswBtn = document.querySelector(
   ".toggle-password"
 ) as HTMLButtonElement;
@@ -13,7 +13,7 @@ const pswErrorMsg = document.getElementById(
   "password-error-message"
 ) as HTMLParagraphElement;
 
-form.addEventListener("submit", (e) => {
+function isValidInput() {
   const username = usernameInput.value.trim();
   const psw = pswInput.value.trim();
 
@@ -31,11 +31,18 @@ form.addEventListener("submit", (e) => {
     valid = false;
   } else pswErrorMsg.style.display = "none";
 
-  if (valid) {
-    (window as any).name = username;
+  return valid;
+}
+
+function handleLoginOnSubmit(event: Event) {
+  event.preventDefault();
+
+  if (isValidInput()) {
     window.location.href = "dashboard.html";
   }
-});
+}
+
+loginForm.addEventListener("submit", handleLoginOnSubmit);
 
 togglePswBtn.addEventListener("click", () => {
   if (pswInput.type === "password") pswInput.type = "text";
