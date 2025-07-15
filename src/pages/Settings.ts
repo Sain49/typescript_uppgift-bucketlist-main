@@ -1,5 +1,5 @@
 // här är det bara level-up!
-import { name, themes } from "../services/variables.js";
+import { name, themes } from "../services/UserData.js";
 import { logOut } from "../utils/UserLoginFuncs.js";
 
 const nameInput = document.getElementById("name-input") as HTMLInputElement;

@@ -1,4 +1,5 @@
 import { Dream } from "../models/IDream.js";
+import { UserLogin } from "../models/ILogin.js";
 
 export const themes = [
   "teknikdrömmar",
@@ -8,7 +9,10 @@ export const themes = [
   "resdrömmar",
 ];
 
-export let name = "NAMN";
+const userLoginString = localStorage.getItem("userLogin");
+const userLogin = userLoginString ? JSON.parse(userLoginString) : null;
+export let name = userLogin ? userLogin.name : "NAMN";
+
 export const dreams: Dream[] = [
   {
     id: 1,
@@ -27,5 +31,11 @@ export const dreams: Dream[] = [
     name: "En dröm som tar flera rader lorem ipsum",
     theme: "vardagsdrömmar",
     checked: false,
+  },
+  {
+    id: 4,
+    name: "En dröm som tar flera rader lorem ipsum",
+    theme: "Out of the blue",
+    checked: true,
   },
 ];
