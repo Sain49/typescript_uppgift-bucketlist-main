@@ -36,7 +36,7 @@ addDreamForm.addEventListener("submit", (e) => {
     else
         themeErrMsg.style.display = "none";
     if (valid) {
-        const dreamsLength = dreams.length;
+        const dreamsLength = dreams.length + 1;
         const newDream = {
             id: dreamsLength,
             name: dreamName,
