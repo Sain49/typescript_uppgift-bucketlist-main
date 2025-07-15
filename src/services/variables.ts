@@ -1,4 +1,4 @@
-import { Dream } from "../models/ObjModels.js";
+import { Dream } from "../models/IDream.js";
 
 export const themes = [
   "teknikdrömmar",

@@ -1,4 +1,6 @@
-import { name } from "../services/variables";
+import { UserLogin } from "../models/ILogin";
+
+const userLogin: UserLogin = { name: "", password: "" };
 
 const loginForm = document.querySelector("form") as HTMLFormElement;
 const usernameInput = document.getElementById("username") as HTMLInputElement;
@@ -31,6 +33,9 @@ function isValidInput() {
     valid = false;
   } else pswErrorMsg.style.display = "none";
 
+  userLogin.name = username;
+  userLogin.password = psw;
+
   return valid;
 }
 
@@ -38,6 +43,8 @@ function handleLoginOnSubmit(event: Event) {
   event.preventDefault();
 
   if (isValidInput()) {
+    // store name and password to local storage
+    storeLoginDataToLS();
     window.location.href = "dashboard.html";
   }
 }
@@ -48,3 +55,7 @@ togglePswBtn.addEventListener("click", () => {
   if (pswInput.type === "password") pswInput.type = "text";
   else pswInput.type = "password";
 });
+
+function storeLoginDataToLS() {
+  localStorage.setItem("userLogin", JSON.stringify(userLogin));
+}

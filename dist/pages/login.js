@@ -1,3 +1,4 @@
+const userLogin = { name: "", password: "" };
 const loginForm = document.querySelector("form");
 const usernameInput = document.getElementById("username");
 const pswInput = document.getElementById("password");
@@ -22,11 +23,15 @@ function isValidInput() {
     }
     else
         pswErrorMsg.style.display = "none";
+    userLogin.name = username;
+    userLogin.password = psw;
     return valid;
 }
 function handleLoginOnSubmit(event) {
     event.preventDefault();
     if (isValidInput()) {
+        // store name and password to local storage
+        storeLoginDataToLS();
         window.location.href = "dashboard.html";
     }
 }
@@ -37,5 +42,8 @@ togglePswBtn.addEventListener("click", () => {
     else
         pswInput.type = "password";
 });
+function storeLoginDataToLS() {
+    localStorage.setItem("userLogin", JSON.stringify(userLogin));
+}
 export {};
 //# sourceMappingURL=Login.js.map
