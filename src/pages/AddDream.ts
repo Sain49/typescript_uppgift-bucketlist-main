@@ -37,7 +37,7 @@ addDreamForm.addEventListener("submit", (e) => {
     },
   ];
 
-  if (validationForm(validationRule)) {
+  if (!validationForm(validationRule)) {
     addDream({ name: dreamInput.value, theme: dreamSelect.value });
 
     formManager.resetForm();

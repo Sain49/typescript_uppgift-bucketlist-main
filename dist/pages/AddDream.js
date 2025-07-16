@@ -25,7 +25,7 @@ addDreamForm.addEventListener("submit", (e) => {
             validation: (v) => v !== "",
         },
     ];
-    if (validationForm(validationRule)) {
+    if (!validationForm(validationRule)) {
         addDream({ name: dreamInput.value, theme: dreamSelect.value });
         formManager.resetForm();
         alert("Dröm tillagd!");
