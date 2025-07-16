@@ -13,7 +13,7 @@ formManager.populateSelect(dreamSelect, themes);
 userName.textContent = name;
 addDreamForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const validationRule = [
+    const validationRules = [
         {
             element: dreamInput,
             errorMsgElm: dreamErrMsg,
@@ -25,7 +25,7 @@ addDreamForm.addEventListener("submit", (e) => {
             validation: (v) => v !== "",
         },
     ];
-    if (!validationForm(validationRule)) {
+    if (validationForm(validationRules)) {
         addDream({ name: dreamInput.value, theme: dreamSelect.value });
         formManager.resetForm();
         alert("Dröm tillagd!");

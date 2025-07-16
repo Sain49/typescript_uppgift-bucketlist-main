@@ -24,7 +24,7 @@ userName.textContent = name;
 addDreamForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const validationRule: ValidationRule[] = [
+  const validationRules: ValidationRule[] = [
     {
       element: dreamInput,
       errorMsgElm: dreamErrMsg,
@@ -37,7 +37,7 @@ addDreamForm.addEventListener("submit", (e) => {
     },
   ];
 
-  if (!validationForm(validationRule)) {
+  if (validationForm(validationRules)) {
     addDream({ name: dreamInput.value, theme: dreamSelect.value });
 
     formManager.resetForm();

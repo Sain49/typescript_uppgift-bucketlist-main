@@ -1,4 +1,8 @@
 import { dreams } from "../services/UserDataService.js";
+import { validationForm } from "../utils/FormValidator.js";
+import { LocalStorageManager } from "../utils/LocalStorageManager.js";
+const dreamManager = new LocalStorageManager("dreams");
+const loginDataManager = new LocalStorageManager("userLogin");
 const userLogin = { name: "", password: "" };
 const loginForm = document.querySelector("form");
 const usernameInput = document.getElementById("username");
@@ -6,34 +10,25 @@ const pswInput = document.getElementById("password");
 const togglePswBtn = document.querySelector(".toggle-password");
 const usernameErrorMsg = document.getElementById("username-error-message");
 const pswErrorMsg = document.getElementById("password-error-message");
-function isValidInput() {
-    const username = usernameInput.value.trim();
-    const psw = pswInput.value.trim();
-    let valid = true;
-    const pswMinLength = 4;
-    if (username === "") {
-        usernameErrorMsg.style.display = "block";
-        valid = false;
-    }
-    else
-        usernameErrorMsg.style.display = "none";
-    if (psw.length < pswMinLength) {
-        pswErrorMsg.style.display = "block";
-        pswErrorMsg.textContent = "Lösenord måste innehålla minst 4 tecken.";
-        valid = false;
-    }
-    else
-        pswErrorMsg.style.display = "none";
-    userLogin.name = username;
-    userLogin.password = psw;
-    return valid;
-}
 function handleLoginOnSubmit(event) {
     event.preventDefault();
-    if (isValidInput()) {
-        // store name and password to local storage
-        storeLoginDataToLS();
-        storeDreamsToLS();
+    const validationRules = [
+        {
+            element: usernameInput,
+            errorMsgElm: usernameErrorMsg,
+            validation: (v) => v !== "",
+        },
+        {
+            element: pswInput,
+            errorMsgElm: pswErrorMsg,
+            validation: (v) => v.length >= 4,
+        },
+    ];
+    if (validationForm(validationRules)) {
+        userLogin.name = usernameInput.value;
+        userLogin.password = pswInput.value;
+        loginDataManager.setData([userLogin]);
+        dreamManager.setData(dreams);
         window.location.href = "dashboard.html";
     }
 }
@@ -44,10 +39,4 @@ togglePswBtn.addEventListener("click", () => {
     else
         pswInput.type = "password";
 });
-function storeLoginDataToLS() {
-    localStorage.setItem("userLogin", JSON.stringify(userLogin));
-}
-function storeDreamsToLS() {
-    localStorage.setItem("dreams", JSON.stringify(dreams));
-}
 //# sourceMappingURL=Login.js.map

@@ -11,7 +11,7 @@ export function validationForm(rules: ValidationRule[]): boolean {
     const { element, errorMsgElm, validation } = r;
     const value = element.value.trim();
 
-    if (validation(value)) {
+    if (!validation(value)) {
       errorMsgElm.style.display = "block";
       isValid = false;
     } else {
