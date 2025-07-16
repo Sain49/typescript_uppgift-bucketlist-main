@@ -9,6 +9,18 @@ export function getDreams(): Dream[] {
   return dreams;
 }
 
+export function addDream(dream: Omit<Dream, "id" | "checked">): void {
+  const newDream: Dream = {
+    id: dreams.length + 1,
+    ...dream,
+    checked: false,
+  };
+
+  dreams.push(newDream);
+
+  dreamManager.setData(dreams);
+}
+
 export function deleteDream(id: number): void {
   const dreamIndex = dreams.findIndex((d) => d.id === id);
   if (dreamIndex > -1) {
