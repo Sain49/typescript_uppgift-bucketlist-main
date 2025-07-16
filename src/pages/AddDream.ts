@@ -1,4 +1,4 @@
-import { themes, name } from "../services/UserData.js";
+import { themes, name } from "../services/UserDataService.js";
 import { Dream } from "../models/IDream.js";
 import { updateDataToLS, retrieveDataFromLS } from "../utils/LocalStorage.js";
 

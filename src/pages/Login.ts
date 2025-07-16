@@ -1,5 +1,5 @@
 import { UserLogin } from "../models/ILogin";
-import { dreams } from "../services/UserData.js";
+import { dreams } from "../services/UserDataService.js";
 
 const userLogin: UserLogin = { name: "", password: "" };
 
