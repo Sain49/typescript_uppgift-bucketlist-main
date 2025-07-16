@@ -1,6 +1,7 @@
-import { themes, name } from "../services/UserData.js";
-import { updateDataToLS, retrieveDataFromLS } from "../utils/LocalStorage.js";
-const dreams = retrieveDataFromLS("dreams");
+import { themes, name } from "../services/UserDataService.js";
+import { LocalStorageManager } from "../utils/LocalStorageManager.js";
+const dreamManager = new LocalStorageManager("dreams");
+const dreams = dreamManager.getData() || [];
 const addDreamForm = document.querySelector("form");
 const dreamInput = document.getElementById("dream");
 const dreamSelect = document.getElementById("dream-select");
@@ -44,7 +45,7 @@ addDreamForm.addEventListener("submit", (e) => {
             checked: false,
         };
         dreams.push(newDream);
-        updateDataToLS("dreams", dreams);
+        dreamManager.setData(dreams);
         addDreamForm.reset();
         alert("Dröm tillagd!");
         window.location.href = "dashboard.html";
