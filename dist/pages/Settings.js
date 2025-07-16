@@ -1,6 +1,6 @@
 // här är det bara level-up!
 import { name, themes } from "../services/UserDataService.js";
-import { logOut } from "../utils/UserLoginFuncs.js";
+import { Auth } from "../services/Auth.js";
 const nameInput = document.getElementById("name-input");
 nameInput.value = name;
 const themeList = document.getElementById("theme-list");
@@ -13,5 +13,5 @@ if (themeList) {
 }
 // "logga ut"
 const logOutBtn = document.querySelector(".logout");
-logOutBtn === null || logOutBtn === void 0 ? void 0 : logOutBtn.addEventListener("click", logOut);
+logOutBtn === null || logOutBtn === void 0 ? void 0 : logOutBtn.addEventListener("click", Auth.logOut);
 //# sourceMappingURL=Settings.js.map
