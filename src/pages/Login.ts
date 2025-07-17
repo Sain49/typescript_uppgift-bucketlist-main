@@ -1,5 +1,5 @@
-import { UserLogin } from "../models/ILogin.js";
-import { Dream } from "../models/IDream.js";
+import { UserLogin } from "../models/Login.js";
+import { Dream } from "../models/Dream.js";
 import { dreams } from "../services/UserDataService.js";
 import { validationForm, ValidationRule } from "../utils/FormValidator.js";
 import { LocalStorageManager } from "../utils/LocalStorageManager.js";

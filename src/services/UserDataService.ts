@@ -1,5 +1,5 @@
-import { Dream } from "../models/IDream.js";
-import { UserLogin } from "../models/ILogin.js";
+import { Dream } from "../models/Dream.js";
+import { UserLogin } from "../models/Login.js";
 
 export const themes = [
   "teknikdrömmar",

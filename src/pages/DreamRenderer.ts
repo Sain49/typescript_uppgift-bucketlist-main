@@ -1,4 +1,4 @@
-import { Dream } from "../models/IDream.js";
+import { Dream } from "../models/Dream.js";
 import { deleteDream, toggleDream } from "../services/DreamService.js";
 
 const dreamList = document.querySelector(".dream-list") as HTMLUListElement;

@@ -1,4 +1,4 @@
-import { Dream } from "../models/IDream.js";
+import { Dream } from "../models/Dream.js";
 import { LocalStorageManager } from "../utils/LocalStorageManager.js";
 
 const dreamManager = new LocalStorageManager<Dream[]>("dreams");
