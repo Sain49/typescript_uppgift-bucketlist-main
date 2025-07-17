@@ -11,12 +11,12 @@ let themes = themesManager.getData();
 
 const nameInput = document.getElementById("name-input") as HTMLInputElement;
 nameInput.value = name;
-const changeUsernameBtn = document.querySelector(
-  ".confirm-input"
+const changeUsernameBtn = document.getElementById(
+  "change-username-btn"
 ) as HTMLButtonElement;
 const themeInput = document.getElementById("theme-input") as HTMLInputElement;
-const addThemeBtn = document.querySelector(
-  ".confirm-input"
+const addThemeBtn = document.getElementById(
+  "add-theme-btn"
 ) as HTMLButtonElement;
 const logOutBtn = document.querySelector(".logout") as HTMLButtonElement;
 
@@ -46,22 +46,35 @@ function listThemes(): void {
     themeList.innerHTML = "";
     themes?.forEach((theme) => {
       const li = document.createElement("li");
-      li.innerHTML = `<p>${theme}</p> <img src="../assets/images/trash_delete.png" />`;
+      li.innerHTML = `<p>${theme.theme}</p> <img src="../assets/images/trash_delete.png" />`;
       themeList.appendChild(li);
+
+      const deleteBtn = li.querySelector("img") as HTMLImageElement;
+      deleteBtn?.addEventListener("click", () => {
+        removeTheme(theme.id);
+      });
     });
   }
+}
+
+function removeTheme(id: number): void {
+  themes = themes?.filter((t) => t.id !== id) || null;
+  if (themes) themesManager.setData(themes);
+
+  listThemes();
 }
 
 addThemeBtn.addEventListener("click", () => {
   const input = themeInput.value.trim();
   if (input) {
-    addthemes({ theme: input });
+    addtheme({ theme: input });
+    themeInput.value = "";
 
     listThemes();
   }
 });
 
-function addthemes(theme: Omit<Theme, "id">): void {
+function addtheme(theme: Omit<Theme, "id">): void {
   const newTheme: Theme = {
     id: (themes ? themes.length : 0) + 1,
     ...theme,

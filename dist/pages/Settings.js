@@ -6,9 +6,9 @@ const themesManager = new LocalStorageManager("themes");
 let themes = themesManager.getData();
 const nameInput = document.getElementById("name-input");
 nameInput.value = name;
-const changeUsernameBtn = document.querySelector(".confirm-input");
+const changeUsernameBtn = document.getElementById("change-username-btn");
 const themeInput = document.getElementById("theme-input");
-const addThemeBtn = document.querySelector(".confirm-input");
+const addThemeBtn = document.getElementById("add-theme-btn");
 const logOutBtn = document.querySelector(".logout");
 function changeUsername(name) {
     let currentUser = userDataManager.getData();
@@ -34,19 +34,30 @@ function listThemes() {
         themeList.innerHTML = "";
         themes === null || themes === void 0 ? void 0 : themes.forEach((theme) => {
             const li = document.createElement("li");
-            li.innerHTML = `<p>${theme}</p> <img src="../assets/images/trash_delete.png" />`;
+            li.innerHTML = `<p>${theme.theme}</p> <img src="../assets/images/trash_delete.png" />`;
             themeList.appendChild(li);
+            const deleteBtn = li.querySelector("img");
+            deleteBtn === null || deleteBtn === void 0 ? void 0 : deleteBtn.addEventListener("click", () => {
+                removeTheme(theme.id);
+            });
         });
     }
+}
+function removeTheme(id) {
+    themes = (themes === null || themes === void 0 ? void 0 : themes.filter((t) => t.id !== id)) || null;
+    if (themes)
+        themesManager.setData(themes);
+    listThemes();
 }
 addThemeBtn.addEventListener("click", () => {
     const input = themeInput.value.trim();
     if (input) {
-        addthemes({ theme: input });
+        addtheme({ theme: input });
+        themeInput.value = "";
         listThemes();
     }
 });
-function addthemes(theme) {
+function addtheme(theme) {
     const newTheme = Object.assign({ id: (themes ? themes.length : 0) + 1 }, theme);
     themes === null || themes === void 0 ? void 0 : themes.push(newTheme);
     if (themes)
