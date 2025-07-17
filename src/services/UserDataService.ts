@@ -13,7 +13,7 @@ export const themes = [
 ];
 
 const user = loginDataManager.getData();
-export let name = Array.isArray(user) ? user[0].name : "NAMN";
+export let name = user ? user.name : "NAMN";
 
 export const dreams: Dream[] = [
   {

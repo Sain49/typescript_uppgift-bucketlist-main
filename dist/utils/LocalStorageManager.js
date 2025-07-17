@@ -8,6 +8,13 @@ export class LocalStorageManager {
     }
     setData(newData) {
         localStorage.setItem(this.key, JSON.stringify(newData));
+        // check if data stored
+        const stored = localStorage.getItem(this.key);
+        if (stored === null) {
+            throw new Error("Failed to save data to localStorage.");
+            return false;
+        }
+        return true;
     }
     removeItem() {
         localStorage.removeItem(this.key);
