@@ -2,14 +2,14 @@ export class FormManager {
     constructor(form) {
         this.form = form;
     }
-    populateSelect(selectElm, options) {
+    populateSelect(selectElm, options, getTheme) {
         while (selectElm.options.length > 1) {
             selectElm.remove(1);
         }
         options.forEach((o) => {
             const option = document.createElement("option");
-            option.value = o;
-            option.textContent = o;
+            option.value = getTheme(o);
+            option.textContent = getTheme(o);
             selectElm.appendChild(option);
         });
     }

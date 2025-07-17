@@ -1,15 +1,16 @@
 import { Dream } from "../models/Dream.js";
+import { Theme } from "../models/Theme.js";
 import { UserLogin } from "../models/Login.js";
 import { LocalStorageManager } from "../utils/LocalStorageManager.js";
 
 const loginDataManager = new LocalStorageManager<UserLogin>("userLogin");
 
-export const themes = [
-  "teknikdrömmar",
-  "vardagsdrömmar",
-  "husdrömmar",
-  "sportdrömmar",
-  "resdrömmar",
+export const themes: Theme[] = [
+  { id: 1, theme: "teknikdrömmar" },
+  { id: 2, theme: "vardagsdrömmar" },
+  { id: 3, theme: "husdrömmar" },
+  { id: 4, theme: "sportdrömmar" },
+  { id: 5, theme: "resdrömmar" },
 ];
 
 const user = loginDataManager.getData();

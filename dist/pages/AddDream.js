@@ -1,7 +1,11 @@
-import { themes, name } from "../services/UserDataService.js";
+import { name } from "../services/UserDataService.js";
 import { addDream } from "../services/DreamService.js";
 import { validationForm } from "../utils/FormValidator.js";
 import { FormManager } from "../utils/FormManager.js";
+import { LocalStorageManager } from "../utils/LocalStorageManager.js";
+const themesLsManager = new LocalStorageManager("themes");
+const themesData = themesLsManager.getData();
+const themes = Array.isArray(themesData) ? themesData : [];
 const addDreamForm = document.querySelector("form");
 const dreamInput = document.getElementById("dream");
 const dreamSelect = document.getElementById("dream-select");
@@ -9,7 +13,7 @@ const dreamErrMsg = document.getElementById("dream-error-message");
 const themeErrMsg = document.getElementById("theme-error-message");
 const userName = document.getElementById("user-name");
 const formManager = new FormManager(addDreamForm);
-formManager.populateSelect(dreamSelect, themes);
+formManager.populateSelect(dreamSelect, themes, (theme) => theme.theme);
 userName.textContent = name;
 addDreamForm.addEventListener("submit", (e) => {
     e.preventDefault();

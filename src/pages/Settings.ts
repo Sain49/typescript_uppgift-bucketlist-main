@@ -1,11 +1,12 @@
 // här är det bara level-up!
+import { Theme } from "../models/Theme.js";
 import { name } from "../services/UserDataService.js";
 import { Auth } from "../services/Auth.js";
 import { UserLogin } from "../models/Login.js";
 import { LocalStorageManager } from "../utils/LocalStorageManager.js";
 
 const userDataManager = new LocalStorageManager<UserLogin>("userLogin");
-const themesManager = new LocalStorageManager<string[]>("themes");
+const themesManager = new LocalStorageManager<Theme[]>("themes");
 let themes = themesManager.getData();
 
 const nameInput = document.getElementById("name-input") as HTMLInputElement;
@@ -52,16 +53,21 @@ function listThemes(): void {
 }
 
 addThemeBtn.addEventListener("click", () => {
-  const newTheme = themeInput.value.trim();
-  if (newTheme) {
-    addthemes(newTheme);
+  const input = themeInput.value.trim();
+  if (input) {
+    addthemes({ theme: input });
 
     listThemes();
   }
 });
 
-function addthemes(theme: string): void {
-  themes?.push(theme);
+function addthemes(theme: Omit<Theme, "id">): void {
+  const newTheme: Theme = {
+    id: (themes ? themes.length : 0) + 1,
+    ...theme,
+  };
+
+  themes?.push(newTheme);
 
   if (themes) themesManager.setData(themes);
 }

@@ -1,11 +1,11 @@
 import { LocalStorageManager } from "../utils/LocalStorageManager.js";
 const loginDataManager = new LocalStorageManager("userLogin");
 export const themes = [
-    "teknikdrömmar",
-    "vardagsdrömmar",
-    "husdrömmar",
-    "sportdrömmar",
-    "resdrömmar",
+    { id: 1, theme: "teknikdrömmar" },
+    { id: 2, theme: "vardagsdrömmar" },
+    { id: 3, theme: "husdrömmar" },
+    { id: 4, theme: "sportdrömmar" },
+    { id: 5, theme: "resdrömmar" },
 ];
 const user = loginDataManager.getData();
 export let name = user ? user.name : "NAMN";
