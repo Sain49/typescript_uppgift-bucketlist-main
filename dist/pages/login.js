@@ -1,8 +1,9 @@
-import { dreams } from "../services/UserDataService.js";
+import { dreams, themes } from "../services/UserDataService.js";
 import { validationForm } from "../utils/FormValidator.js";
 import { LocalStorageManager } from "../utils/LocalStorageManager.js";
 const dreamManager = new LocalStorageManager("dreams");
 const loginDataManager = new LocalStorageManager("userLogin");
+const themesManager = new LocalStorageManager("themes");
 const userLogin = { name: "", password: "" };
 const loginForm = document.querySelector("form");
 const usernameInput = document.getElementById("username");
@@ -29,6 +30,7 @@ function handleLoginOnSubmit(event) {
         userLogin.password = pswInput.value;
         loginDataManager.setData(userLogin);
         dreamManager.setData(dreams);
+        themesManager.setData(themes);
         window.location.href = "dashboard.html";
     }
 }
