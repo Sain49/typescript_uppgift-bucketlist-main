@@ -5,7 +5,7 @@ import { validationForm, ValidationRule } from "../utils/FormValidator.js";
 import { LocalStorageManager } from "../utils/LocalStorageManager.js";
 
 const dreamManager = new LocalStorageManager<Dream[]>("dreams");
-const loginDataManager = new LocalStorageManager<UserLogin[]>("userLogin");
+const loginDataManager = new LocalStorageManager<UserLogin>("userLogin");
 
 const userLogin: UserLogin = { name: "", password: "" };
 
@@ -42,8 +42,7 @@ function handleLoginOnSubmit(event: Event) {
     userLogin.name = usernameInput.value;
     userLogin.password = pswInput.value;
 
-    loginDataManager.setData([userLogin]);
-
+    loginDataManager.setData(userLogin);
     dreamManager.setData(dreams);
 
     window.location.href = "dashboard.html";

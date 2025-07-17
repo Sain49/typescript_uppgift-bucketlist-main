@@ -1,5 +1,8 @@
 import { Dream } from "../models/Dream.js";
 import { UserLogin } from "../models/Login.js";
+import { LocalStorageManager } from "../utils/LocalStorageManager.js";
+
+const loginDataManager = new LocalStorageManager<UserLogin>("userLogin");
 
 export const themes = [
   "teknikdrömmar",
@@ -9,11 +12,8 @@ export const themes = [
   "resdrömmar",
 ];
 
-const userLoginString = localStorage.getItem("userLogin");
-const userLogin: UserLogin = userLoginString
-  ? JSON.parse(userLoginString)
-  : null;
-export let name = userLogin ? userLogin.name : "NAMN";
+const user = loginDataManager.getData();
+export let name = Array.isArray(user) ? user[0].name : "NAMN";
 
 export const dreams: Dream[] = [
   {

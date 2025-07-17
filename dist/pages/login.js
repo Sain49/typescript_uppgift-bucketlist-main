@@ -27,7 +27,7 @@ function handleLoginOnSubmit(event) {
     if (validationForm(validationRules)) {
         userLogin.name = usernameInput.value;
         userLogin.password = pswInput.value;
-        loginDataManager.setData([userLogin]);
+        loginDataManager.setData(userLogin);
         dreamManager.setData(dreams);
         window.location.href = "dashboard.html";
     }
